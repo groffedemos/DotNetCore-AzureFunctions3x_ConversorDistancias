@@ -29,7 +29,7 @@ jobs:
 
     - name: Build de imagem e Push no Azure Container Registry
       run: |
-        cd {{ env.DIRETORIO_APLICACAO }}
+        cd ${{ env.DIRETORIO_APLICACAO }}
         docker build . --file Dockerfile --tag ${{ env.IMAGEM_AZURECR }}:latest
         docker tag ${{ env.IMAGEM_AZURECR }}:latest ${{ env.IMAGEM_AZURECR }}:$GITHUB_RUN_NUMBER
         docker push ${{ env.IMAGEM_AZURECR }}
