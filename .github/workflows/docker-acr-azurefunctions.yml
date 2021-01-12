@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGEM_AZURECR: ${{ secrets.AZURECR_REGISTRY }}/siterepos
+  IMAGEM_AZURECR: ${{ secrets.AZURECR_REGISTRY }}/functionappdistancias
 
 jobs:
 
