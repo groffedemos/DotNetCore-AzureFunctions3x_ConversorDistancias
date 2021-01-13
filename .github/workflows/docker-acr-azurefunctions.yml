@@ -51,5 +51,5 @@ jobs:
     - name: Azure Functions Container Action
       uses: Azure/functions-container-action@v1.0.0
       with:
-        app-name: ${{ env.NOME_FUNCTIONAPP }}
+        app-name: groffedistancias
         image: anpgithubactions.azurecr.io/functionappdistancias:latest
