@@ -4,7 +4,7 @@ namespace FunctionAppDistancias
 {
     public class Distancia
     {
-        public DateTime DataProcessamento { get; }
+        public DateTime DataProcessamento { get; } = DateTime.Now;
         public double Milhas { get; }
         public double Km { get; }
 
