@@ -62,4 +62,4 @@ jobs:
         IMAGEM_TAG: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
       with:
         app-name: ${{ env.NOME_FUNCTIONAPP }}
-        image: ${{ env.IMAGEM_DEPLOYMENT }}
+        image: ${{ env.IMAGEM_TAG }}
