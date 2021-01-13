@@ -53,5 +53,5 @@ jobs:
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       with:
-        app-name: ${{ env.IMAGEM_AZURECR }}
+        app-name: ${{ env.NOME_WEBAPP }}
         image: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
