@@ -48,8 +48,8 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Azure Functions Action
-      uses: Azure/functions-action@v1.1.8
+    - name: Azure Functions Container Action
+      uses: Azure/functions-container-action@v1.0.0
       with:
         app-name: ${{ env.NOME_FUNCTIONAPP }}
-        package: anpgithubactions.azurecr.io/functionappdistancias:latest
+        image: anpgithubactions.azurecr.io/functionappdistancias:latest
