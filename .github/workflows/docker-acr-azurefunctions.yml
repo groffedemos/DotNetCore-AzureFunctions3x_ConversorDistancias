@@ -49,10 +49,13 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Exibir nome imagem
+      run: echo $IMAGEM_DEPLOYMENT
+    
     - name: Azure Functions - Deployment utilizando Containers
       uses: Azure/functions-container-action@v1.0.1
       env:
         IMAGEM_TAG: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
       with:
         app-name: ${{ env.NOME_FUNCTIONAPP }}
-        image: ${{ env.IMAGEM_DEPLOYMENT }}
+        image: anpgithubactions.azurecr.io/functionappdistancias:latest
