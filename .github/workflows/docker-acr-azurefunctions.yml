@@ -33,3 +33,23 @@ jobs:
         docker build . --file Dockerfile --tag ${{ env.IMAGEM_AZURECR }}:latest
         docker tag ${{ env.IMAGEM_AZURECR }}:latest ${{ env.IMAGEM_AZURECR }}:$GITHUB_RUN_NUMBER
         docker push ${{ env.IMAGEM_AZURECR }}
+
+  deployment-azfunctions:
+    needs: [build-acr]
+
+    env:
+      NOME_WEBAPP: groffedistancias
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Azure Login - Conectando com Credenciais no Azure
+      uses: Azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure Functions - Deployment utilizando Containers
+      uses: Azure/functions-container-action@v1.0.1
+      with:
+        app-name: ${{ env.NOME_FUNCTIONAPP }}
+        image: '${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}'
