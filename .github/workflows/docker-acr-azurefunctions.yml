@@ -39,7 +39,6 @@ jobs:
 
     env:
       NOME_WEBAPP: groffedistancias
-      IMAGEM_DEPLOYMENT: $IMAGEM_AZURECR:$GITHUB_RUN_NUMBER
 
     runs-on: ubuntu-latest
 
@@ -48,18 +47,9 @@ jobs:
       uses: Azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Login no Azure Container Registry
-      uses: docker/login-action@v1.8.0
-      with:
-        registry: ${{ secrets.AZURECR_REGISTRY }}
-        username: ${{ secrets.AZURECR_USERNAME }}
-        password: ${{ secrets.AZURECR_PASSWORD }}
     
-    - name: Azure Functions - Deployment utilizando Containers
-      uses: Azure/functions-container-action@v1.0.1
-      env:
-        IMAGEM_TAG: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
+    - name: Azure WebApp - Deployment da Function App
+      uses: Azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.NOME_FUNCTIONAPP }}
-        image: ${{ env.IMAGEM_TAG }}
+        app-name: ${{ env.NOME_WEBAPP }}
+        images: '${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}'
