@@ -51,6 +51,13 @@ jobs:
 
     - name: Exibir nome imagem
       run: echo $IMAGEM_DEPLOYMENT
+
+    - name: Login no Azure Container Registry
+      uses: docker/login-action@v1.8.0
+      with:
+        registry: ${{ secrets.AZURECR_REGISTRY }}
+        username: ${{ secrets.AZURECR_USERNAME }}
+        password: ${{ secrets.AZURECR_PASSWORD }}
     
     - name: Azure Functions - Deployment utilizando Containers
       uses: Azure/functions-container-action@v1.0.1
