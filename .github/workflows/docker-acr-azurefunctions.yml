@@ -49,9 +49,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Exibir nome imagem
-      run: echo $IMAGEM_DEPLOYMENT
-
     - name: Login no Azure Container Registry
       uses: docker/login-action@v1.8.0
       with:
@@ -65,4 +62,4 @@ jobs:
         IMAGEM_TAG: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
       with:
         app-name: ${{ env.NOME_FUNCTIONAPP }}
-        image: anpgithubactions.azurecr.io/functionappdistancias:latest
+        image: ${{ env.IMAGEM_DEPLOYMENT }}
