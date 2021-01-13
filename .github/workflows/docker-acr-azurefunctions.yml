@@ -39,6 +39,7 @@ jobs:
 
     env:
       NOME_WEBAPP: groffedistancias
+      IMAGEM_DEPLOYMENT: $IMAGEM_AZURECR:$GITHUB_RUN_NUMBER
 
     runs-on: ubuntu-latest
 
@@ -50,6 +51,8 @@ jobs:
 
     - name: Azure Functions - Deployment utilizando Containers
       uses: Azure/functions-container-action@v1.0.1
+      env:
+        IMAGEM_TAG: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
       with:
         app-name: ${{ env.NOME_FUNCTIONAPP }}
-        image: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
+        image: ${{ env.IMAGEM_DEPLOYMENT }}
