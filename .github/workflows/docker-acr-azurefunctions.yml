@@ -52,4 +52,4 @@ jobs:
       uses: Azure/functions-container-action@v1.0.1
       with:
         app-name: ${{ env.NOME_FUNCTIONAPP }}
-        image: '${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}'
+        image: ${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}
