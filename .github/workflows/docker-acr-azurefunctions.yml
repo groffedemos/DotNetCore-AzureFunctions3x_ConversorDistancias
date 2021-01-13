@@ -47,9 +47,9 @@ jobs:
       uses: Azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-    - name: Azure WebApp - Deployment da Function App
-      uses: Azure/webapps-deploy@v2
+
+    - name: Azure Functions Action
+      uses: Azure/functions-action@v1.1.8
       with:
-        app-name: ${{ env.NOME_WEBAPP }}
-        images: '${{ env.IMAGEM_AZURECR }}:${{ github.run_number }}'
+        app-name: ${{ env.NOME_FUNCTIONAPP }}
+        package: anpgithubactions.azurecr.io/functionappdistancias:latest
