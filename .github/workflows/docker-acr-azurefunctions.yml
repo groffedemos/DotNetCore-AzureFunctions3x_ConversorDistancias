@@ -51,6 +51,7 @@ jobs:
     - name: Azure Functions Container Action
       uses: Azure/functions-container-action@v1.0.1
       env:
+        # Ajuste necessário devido a incompatibilidades desta Action
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       with:
         app-name: ${{ env.NOME_WEBAPP }}
